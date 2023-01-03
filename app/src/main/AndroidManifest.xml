@@ -15,6 +15,27 @@
         android:theme="@style/Theme.SWAPI"
         tools:targetApi="31">
         <activity
+            android:name=".VehicleCard"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".PlanetCard"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".PersonCard"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".VehiclesListViewHolder"
             android:exported="false">
             <meta-data
