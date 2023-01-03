@@ -1,5 +1,6 @@
 package com.example.swapi
 
+import android.content.Intent
 import android.media.Image.Plane
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -20,7 +21,12 @@ class ListPlanet : AppCompatActivity() {
         val lstPlanet = findViewById<RecyclerView>(R.id.lstPlanet)
         lstPlanet.layoutManager = LinearLayoutManager(this)
 
-        val adapter = PlanetListAdapter()
+        val adapter = PlanetListAdapter{
+            val intent_planetCard = Intent(this, PlanetCard::class.java)
+            startActivity(intent_planetCard)
+            Log.i("DEBUG", "touched ${it.name}")
+        }
+
         lstPlanet.adapter = adapter
 
         val retrofit = Retrofit.Builder()

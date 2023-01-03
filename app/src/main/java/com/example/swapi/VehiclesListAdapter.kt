@@ -4,8 +4,9 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import java.util.function.Consumer
 
-class VehiclesListAdapter : RecyclerView.Adapter<VehiclesListViewHolder>(){
+class VehiclesListAdapter(private val VehicleConsumer : Consumer<Vehicle>) : RecyclerView.Adapter<VehiclesListViewHolder>(){
     var _vehiclesList: List<Vehicle> = ArrayList<Vehicle>()
     var vehiclesList: List<Vehicle>
         get() = _vehiclesList
@@ -19,11 +20,12 @@ class VehiclesListAdapter : RecyclerView.Adapter<VehiclesListViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VehiclesListViewHolder {
         val v = LayoutInflater.from(parent.context)
             .inflate(R.layout.vehicle_item,parent,false)
-        return VehiclesListViewHolder(v)
+        return VehiclesListViewHolder(v, VehicleConsumer)
     }
 
     override fun onBindViewHolder(holder: VehiclesListViewHolder, position: Int) {
         val vehicle = vehiclesList[position]
+        holder.vehicle = vehicle
         holder.txtModel.text = vehicle.model
     }
 

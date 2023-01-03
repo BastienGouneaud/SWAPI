@@ -1,5 +1,6 @@
 package com.example.swapi
 
+import android.content.Intent
 import android.media.Image.Plane
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -20,7 +21,11 @@ class ListVehicles : AppCompatActivity() {
         val lstVehicles = findViewById<RecyclerView>(R.id.lstVehicles)
         lstVehicles.layoutManager = LinearLayoutManager(this)
 
-        val adapter = VehiclesListAdapter()
+        val adapter = VehiclesListAdapter{
+            val intent_vehiclesCard = Intent(this, VehicleCard::class.java)
+            Log.i("DEBUG", "touched ${it.name}")
+            startActivity(intent_vehiclesCard)
+        }
         lstVehicles.adapter = adapter
 
         val retrofit = Retrofit.Builder()

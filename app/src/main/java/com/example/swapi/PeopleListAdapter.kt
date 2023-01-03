@@ -4,8 +4,9 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import java.util.function.Consumer
 
-class PeopleListAdapter : RecyclerView.Adapter<PeopleListViewHolder>(){
+class PeopleListAdapter(private val PeopleConsumer : Consumer<People>) : RecyclerView.Adapter<PeopleListViewHolder>(){
     var _peopleList: List<People> = ArrayList<People>()
     var peopleList: List<People>
     get() = _peopleList
@@ -19,11 +20,12 @@ class PeopleListAdapter : RecyclerView.Adapter<PeopleListViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PeopleListViewHolder {
         val v = LayoutInflater.from(parent.context)
             .inflate(R.layout.person_item,parent,false)
-        return PeopleListViewHolder(v)
+        return PeopleListViewHolder(v, PeopleConsumer)
     }
 
     override fun onBindViewHolder(holder: PeopleListViewHolder, position: Int) {
         val people = peopleList[position]
+        holder.people = people
         holder.txtName.text = people.name
         holder.txtBirthYear.text = people.birthYear.toString()
         holder.txtGender.text = people.gender

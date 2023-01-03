@@ -1,5 +1,6 @@
 package com.example.swapi
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -19,7 +20,11 @@ class ListPeople : AppCompatActivity() {
         val lstPeople = findViewById<RecyclerView>(R.id.lstPerson)
         lstPeople.layoutManager = LinearLayoutManager(this)
 
-        val adapter = PeopleListAdapter()
+        val adapter = PeopleListAdapter{
+            val intent_peopleCard = Intent(this, PeopleCard::class.java)
+            Log.i("DEBUG", "touched ${it.name}")
+            startActivity(intent_peopleCard)
+        }
         lstPeople.adapter = adapter
 
         val retrofit = Retrofit.Builder()
