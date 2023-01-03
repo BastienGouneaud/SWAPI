@@ -1,11 +1,20 @@
 package com.example.swapi
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
 class PeopleListAdapter : RecyclerView.Adapter<PeopleListViewHolder>(){
-    lateinit var peopleList: List<People>
+    var _peopleList: List<People> = ArrayList<People>()
+    var peopleList: List<People>
+    get() = _peopleList
+    @SuppressLint("Notifications de chargement de données")
+    set (value){
+        _peopleList = value
+        notifyDataSetChanged()
+    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PeopleListViewHolder {
         val v = LayoutInflater.from(parent.context)
