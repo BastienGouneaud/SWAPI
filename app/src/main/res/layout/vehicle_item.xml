@@ -9,32 +9,33 @@
         android:id="@+id/txtName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/txtGender"
+        tools:text = "Luke Skywlaker"
+        app:layout_constraintBottom_toTopOf="@+id/txtModel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
         />
     <TextView
-        android:id="@+id/txtGender"
+        android:id="@+id/txtModel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/txtBirthYear"
+        tools:text = "Male"
+        app:layout_constraintBottom_toTopOf="@+id/txtManufacturer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtName"
         />
 
     <TextView
-        android:id="@+id/txtBirthYear"
+        android:id="@+id/txtManufacturer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.163"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtGender"
-        tools:text="2045" />
+        app:layout_constraintTop_toBottomOf="@+id/txtName" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

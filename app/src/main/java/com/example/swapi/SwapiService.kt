@@ -15,4 +15,7 @@ interface SwapiService {
 
     @GET("planets/")
     fun listPLanet(): Call<SWModelList<Planet>>
+
+    @GET("starships/")
+    fun listVehicles(): Call<SWModelList<Vehicle>>
 }
