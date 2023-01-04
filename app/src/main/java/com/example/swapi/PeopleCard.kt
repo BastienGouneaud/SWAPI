@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -85,16 +86,16 @@ class PeopleCard : AppCompatActivity() {
                         Log.d("DEBUG", "received planet named ${response.body()?.name}")
                         Log.d("DEBUG", "received planet surface ${response.body()?.surfaceWater}")
                         intent_planetCard.putExtra(PARAM_PLANET_NAME, response.body()?.name.toString())
-                        /*intent_planetCard.putExtra(PARAM_PLANET_ROTATION, response.body()?.rotationPeriod)
-                        intent_planetCard.putExtra(PARAM_PLANET_ORBITAL, response.body()?.orbitalPeriod)
-                        intent_planetCard.putExtra(PARAM_PLANET_DIAMETER, response.body()?.diameter)
-                        intent_planetCard.putExtra(PARAM_PLANET_CLIMATE, response.body()?.climate)
-                        intent_planetCard.putExtra(PARAM_PLANET_GRAVITY, response.body()?.gravity)
-                        intent_planetCard.putExtra(PARAM_PLANET_TERRAIN, response.body()?.terrain)
-                        intent_planetCard.putExtra(PARAM_PLANET_SURFACE, response.body()?.surfaceWater)
-                        intent_planetCard.putExtra(PARAM_PLANET_POPULATION, response.body()?.population)
-                        intent_planetCard.putExtra(PARAM_PLANET_CREATED, response.body()?.created)
-                        intent_planetCard.putExtra(PARAM_PLANET_EDITED, response.body()?.edited)*/
+                        intent_planetCard.putExtra(PARAM_PLANET_ROTATION, response.body()?.rotationPeriod.toString())
+                        intent_planetCard.putExtra(PARAM_PLANET_ORBITAL, response.body()?.orbitalPeriod.toString())
+                        intent_planetCard.putExtra(PARAM_PLANET_DIAMETER, response.body()?.diameter.toString())
+                        intent_planetCard.putExtra(PARAM_PLANET_CLIMATE, response.body()?.climate.toString())
+                        intent_planetCard.putExtra(PARAM_PLANET_GRAVITY, response.body()?.gravity.toString())
+                        intent_planetCard.putExtra(PARAM_PLANET_TERRAIN, response.body()?.terrain.toString())
+                        intent_planetCard.putExtra(PARAM_PLANET_SURFACE, response.body()?.surfaceWater.toString())
+                        intent_planetCard.putExtra(PARAM_PLANET_POPULATION, response.body()?.population.toString())
+                        intent_planetCard.putExtra(PARAM_PLANET_CREATED, response.body()?.created.toString())
+                        intent_planetCard.putExtra(PARAM_PLANET_EDITED, response.body()?.edited.toString())
                         startActivity(intent_planetCard)
                     } else {
                         Log.d("DEBUG", "received unsuccessful response : ${response.code()} ${response.message()}")
