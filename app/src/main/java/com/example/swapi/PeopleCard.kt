@@ -83,8 +83,7 @@ class PeopleCard : AppCompatActivity() {
             swapi.planet(id_url).enqueue(object : Callback<Planet>  {
                 override fun onResponse(call: Call<Planet>, response: Response<Planet>) {
                     if (response.isSuccessful) {
-                        Log.d("DEBUG", "received planet named ${response.body()?.name}")
-                        Log.d("DEBUG", "received planet surface ${response.body()?.surfaceWater}")
+                        Log.d("DEBUG", "touched ${response.body()?.name}")
                         intent_planetCard.putExtra(PARAM_PLANET_NAME, response.body()?.name.toString())
                         intent_planetCard.putExtra(PARAM_PLANET_ROTATION, response.body()?.rotationPeriod.toString())
                         intent_planetCard.putExtra(PARAM_PLANET_ORBITAL, response.body()?.orbitalPeriod.toString())
