@@ -11,7 +11,7 @@ open class Vehicle : Serializable {
     var name: String? = null
     var model: String? = null
 
-    @SerializedName("vehicle_class")
+    @SerializedName("starship_class")
     var vehicleClass: String? = null
     var manufacturer: String? = null
 
