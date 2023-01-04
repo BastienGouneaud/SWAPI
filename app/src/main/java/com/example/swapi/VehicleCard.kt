@@ -72,14 +72,26 @@ class VehicleCard : AppCompatActivity() {
 
         val vehicles_created= intent?.getStringExtra(PARAM_VEHICLE_CREATED)
         val created = findViewById<TextView>(R.id.ResVehicleCreated)
-        created.setText(vehicles_created)
+        created.setText(dateGeneration(vehicles_created))
 
         val vehicles_edited= intent?.getStringExtra(PARAM_VEHICLE_EDITED)
         val edited = findViewById<TextView>(R.id.ResVehicleEdited)
-        edited.setText(vehicles_edited)
+        edited.setText(dateGeneration(vehicles_edited))
 
         findViewById<Button>(R.id.VehicleBackbutton).setOnClickListener{
             finish()
         }
+    }
+
+    private fun dateGeneration(dateTime: String?): String {
+        val str = dateTime?.split("T")
+        // date -> (YYYY-MM-JJ)
+        val date = str?.get(0)
+        val tab_date = date?.split("-")
+        // hour -> (MM:HH:SS)
+        val hour = (str?.get(1)?.split((".")))?.get(0)
+        // Date with format JJ/MM/YYYY HH:MM:SS
+        var outputDate = tab_date?.get(2)+"/"+tab_date?.get(1)+"/"+tab_date?.get(0)+" "+hour
+        return outputDate
     }
 }

@@ -2,8 +2,11 @@ package com.example.swapi
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
+import java.text.SimpleDateFormat
+import java.util.*
 
 const val PARAM_PEOPLE_NAME : String = "name_people"
 const val PARAM_PEOPLE_HEIGHT : String = "height_people"
@@ -45,14 +48,26 @@ class PeopleCard : AppCompatActivity() {
 
         val people_created = intent?.getStringExtra(PARAM_PEOPLE_CREATED)
         val created = findViewById<TextView>(R.id.ResCreated)
-        created.setText(people_created)
+        created.setText(dateGeneration(people_created))
 
         val people_edited = intent?.getStringExtra(PARAM_PEOPLE_EDITED)
         val edited = findViewById<TextView>(R.id.ResEdited)
-        edited.setText(people_edited)
+        edited.setText(dateGeneration(people_edited))
 
         findViewById<Button>(R.id.PersonBackbutton).setOnClickListener{
             finish()
         }
+    }
+
+    private fun dateGeneration(dateTime: String?): String {
+        val str = dateTime?.split("T")
+        // date -> (YYYY-MM-JJ)
+        val date = str?.get(0)
+        val tab_date = date?.split("-")
+        // hour -> (MM:HH:SS)
+        val hour = (str?.get(1)?.split((".")))?.get(0)
+        // Date with format JJ/MM/YYYY HH:MM:SS
+        var outputDate = tab_date?.get(2)+"/"+tab_date?.get(1)+"/"+tab_date?.get(0)+" "+hour
+        return outputDate
     }
 }

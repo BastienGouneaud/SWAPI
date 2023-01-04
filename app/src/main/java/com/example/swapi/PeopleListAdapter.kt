@@ -32,4 +32,6 @@ class PeopleListAdapter(private val PeopleConsumer : Consumer<People>) : Recycle
     override fun getItemCount(): Int {
         return peopleList.size
     }
+
+
 }

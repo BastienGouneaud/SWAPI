@@ -60,16 +60,26 @@ class PlanetCard : AppCompatActivity() {
 
         val planet_created = intent?.getStringExtra(PARAM_PLANET_CREATED)
         val created = findViewById<TextView>(R.id.ResPlanetCreated)
-        created.setText(planet_created)
+        created.setText(dateGeneration(planet_created))
 
         val planet_edited = intent?.getStringExtra(PARAM_PLANET_EDITED)
         val edited = findViewById<TextView>(R.id.ResPlanetEdited)
-        edited.setText(planet_edited)
+        edited.setText(dateGeneration(planet_edited))
 
         findViewById<Button>(R.id.PlanetBackbutton).setOnClickListener{
             finish()
         }
+    }
 
-
+    private fun dateGeneration(dateTime: String?): String {
+        val str = dateTime?.split("T")
+        // date -> (YYYY-MM-JJ)
+        val date = str?.get(0)
+        val tab_date = date?.split("-")
+        // hour -> (MM:HH:SS)
+        val hour = (str?.get(1)?.split((".")))?.get(0)
+        // Date with format JJ/MM/YYYY HH:MM:SS
+        var outputDate = tab_date?.get(2)+"/"+tab_date?.get(1)+"/"+tab_date?.get(0)+" "+hour
+        return outputDate
     }
 }
