@@ -1,10 +1,17 @@
 package com.example.swapi
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import java.lang.Integer.parseInt
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -16,11 +23,14 @@ const val PARAM_PEOPLE_BIRTH : String = "birth_people"
 const val PARAM_PEOPLE_GENDER : String = "gender_people"
 const val PARAM_PEOPLE_CREATED : String = "created_people"
 const val PARAM_PEOPLE_EDITED : String = "edited_people"
+const val PARAM_PEOPLE_WORLD : String = "planet_people"
 
 class PeopleCard : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_person_card)
+
+        val planet_name = intent?.getStringExtra(PARAM_PEOPLE_WORLD)
 
         val people_name = intent?.getStringExtra(PARAM_PEOPLE_NAME)
         val name = findViewById<TextView>(R.id.ResName)
@@ -56,6 +66,46 @@ class PeopleCard : AppCompatActivity() {
 
         findViewById<Button>(R.id.PersonBackbutton).setOnClickListener{
             finish()
+        }
+
+        findViewById<Button>(R.id.buttonGoToPlanet).setOnClickListener{
+            val intent_planetCard = Intent(this, PlanetCard::class.java)
+            val id_url = parseInt(planet_name?.split("/")?.get(5))
+
+            //TEST
+            val retrofit = Retrofit.Builder()
+                .baseUrl("https://swapi.dev/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+            val swapi = retrofit.create(SwapiService::class.java)
+
+            swapi.planet(id_url).enqueue(object : Callback<Planet>  {
+                override fun onResponse(call: Call<Planet>, response: Response<Planet>) {
+                    if (response.isSuccessful) {
+                        Log.d("DEBUG", "received planet named ${response.body()?.name}")
+                        Log.d("DEBUG", "received planet surface ${response.body()?.surfaceWater}")
+                        intent_planetCard.putExtra(PARAM_PLANET_NAME, response.body()?.name.toString())
+                        /*intent_planetCard.putExtra(PARAM_PLANET_ROTATION, response.body()?.rotationPeriod)
+                        intent_planetCard.putExtra(PARAM_PLANET_ORBITAL, response.body()?.orbitalPeriod)
+                        intent_planetCard.putExtra(PARAM_PLANET_DIAMETER, response.body()?.diameter)
+                        intent_planetCard.putExtra(PARAM_PLANET_CLIMATE, response.body()?.climate)
+                        intent_planetCard.putExtra(PARAM_PLANET_GRAVITY, response.body()?.gravity)
+                        intent_planetCard.putExtra(PARAM_PLANET_TERRAIN, response.body()?.terrain)
+                        intent_planetCard.putExtra(PARAM_PLANET_SURFACE, response.body()?.surfaceWater)
+                        intent_planetCard.putExtra(PARAM_PLANET_POPULATION, response.body()?.population)
+                        intent_planetCard.putExtra(PARAM_PLANET_CREATED, response.body()?.created)
+                        intent_planetCard.putExtra(PARAM_PLANET_EDITED, response.body()?.edited)*/
+                        startActivity(intent_planetCard)
+                    } else {
+                        Log.d("DEBUG", "received unsuccessful response : ${response.code()} ${response.message()}")
+                    }
+                }
+
+                override fun onFailure(call: Call<Planet>, t: Throwable) {
+                    Log.d("DEBUG", "error while retrieving people : ${t.localizedMessage}")
+                }
+            })
+            //FIN TEST
         }
     }
 

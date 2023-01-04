@@ -30,6 +30,7 @@ class ListPeople : AppCompatActivity() {
             intent_peopleCard.putExtra(PARAM_PEOPLE_GENDER, it.gender)
             intent_peopleCard.putExtra(PARAM_PEOPLE_CREATED, it.created)
             intent_peopleCard.putExtra(PARAM_PEOPLE_EDITED, it.edited)
+            intent_peopleCard.putExtra(PARAM_PEOPLE_WORLD, it.homeWorldUrl)
             Log.i("DEBUG", "touched ${it.name}")
             startActivity(intent_peopleCard)
         }
