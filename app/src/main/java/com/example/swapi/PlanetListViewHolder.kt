@@ -7,9 +7,6 @@ import java.util.function.Consumer
 
 class PlanetListViewHolder(itemView: View, private val PlanetConsumer : Consumer<Planet>) : RecyclerView.ViewHolder(itemView){
     var txtName : TextView = itemView.findViewById(R.id.txtName)
-    var txtClimate : TextView = itemView.findViewById(R.id.txtClimate)
-    var txtDiamater : TextView = itemView.findViewById(R.id.txtDiamater)
-
     lateinit var planet: Planet
 
     init{

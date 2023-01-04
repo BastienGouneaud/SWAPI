@@ -27,8 +27,6 @@ class PlanetListAdapter(private val PlanetConsumer : Consumer<Planet>) : Recycle
         val planet = planetList[position]
         holder.planet = planet
         holder.txtName.text = planet.name
-        holder.txtClimate.text = planet.climate
-        holder.txtDiamater.text = planet.diameter
     }
 
     override fun getItemCount(): Int {

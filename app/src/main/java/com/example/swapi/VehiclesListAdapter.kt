@@ -26,7 +26,7 @@ class VehiclesListAdapter(private val VehicleConsumer : Consumer<Vehicle>) : Rec
     override fun onBindViewHolder(holder: VehiclesListViewHolder, position: Int) {
         val vehicle = vehiclesList[position]
         holder.vehicle = vehicle
-        holder.txtModel.text = vehicle.model
+        holder.txtName.text = vehicle.name
     }
 
     override fun getItemCount(): Int {

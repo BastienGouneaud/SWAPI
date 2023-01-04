@@ -27,8 +27,6 @@ class PeopleListAdapter(private val PeopleConsumer : Consumer<People>) : Recycle
         val people = peopleList[position]
         holder.people = people
         holder.txtName.text = people.name
-        holder.txtBirthYear.text = people.birthYear.toString()
-        holder.txtGender.text = people.gender
     }
 
     override fun getItemCount(): Int {
