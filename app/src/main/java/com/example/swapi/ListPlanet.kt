@@ -23,6 +23,17 @@ class ListPlanet : AppCompatActivity() {
 
         val adapter = PlanetListAdapter{
             val intent_planetCard = Intent(this, PlanetCard::class.java)
+            intent_planetCard.putExtra(PARAM_PLANET_NAME, it.name)
+            intent_planetCard.putExtra(PARAM_PLANET_ROTATION, it.rotationPeriod)
+            intent_planetCard.putExtra(PARAM_PLANET_ORBITAL, it.orbitalPeriod)
+            intent_planetCard.putExtra(PARAM_PLANET_DIAMETER, it.diameter)
+            intent_planetCard.putExtra(PARAM_PLANET_CLIMATE, it.climate)
+            intent_planetCard.putExtra(PARAM_PLANET_GRAVITY, it.gravity)
+            intent_planetCard.putExtra(PARAM_PLANET_TERRAIN, it.terrain)
+            intent_planetCard.putExtra(PARAM_PLANET_SURFACE, it.surfaceWater)
+            intent_planetCard.putExtra(PARAM_PLANET_POPULATION, it.population)
+            intent_planetCard.putExtra(PARAM_PLANET_CREATED, it.created)
+            intent_planetCard.putExtra(PARAM_PLANET_EDITED, it.edited)
             startActivity(intent_planetCard)
             Log.i("DEBUG", "touched ${it.name}")
         }
@@ -49,7 +60,7 @@ class ListPlanet : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<SWModelList<Planet>>, t: Throwable) {
-                Log.d("DEBUG", "error while retrieving people : ${t.localizedMessage}")
+                Log.d("DEBUG", "error while retrieving planet : ${t.localizedMessage}")
             }
         })
 

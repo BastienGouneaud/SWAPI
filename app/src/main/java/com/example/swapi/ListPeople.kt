@@ -22,6 +22,14 @@ class ListPeople : AppCompatActivity() {
 
         val adapter = PeopleListAdapter{
             val intent_peopleCard = Intent(this, PeopleCard::class.java)
+            intent_peopleCard.putExtra(PARAM_PEOPLE_NAME, it.name)
+            intent_peopleCard.putExtra(PARAM_PEOPLE_HEIGHT, it.height)
+            intent_peopleCard.putExtra(PARAM_PEOPLE_MASS, it.mass)
+            intent_peopleCard.putExtra(PARAM_PEOPLE_HAIR, it.hairColor)
+            intent_peopleCard.putExtra(PARAM_PEOPLE_BIRTH, it.birthYear)
+            intent_peopleCard.putExtra(PARAM_PEOPLE_GENDER, it.gender)
+            intent_peopleCard.putExtra(PARAM_PEOPLE_CREATED, it.created)
+            intent_peopleCard.putExtra(PARAM_PEOPLE_EDITED, it.edited)
             Log.i("DEBUG", "touched ${it.name}")
             startActivity(intent_peopleCard)
         }

@@ -23,6 +23,19 @@ class ListVehicles : AppCompatActivity() {
 
         val adapter = VehiclesListAdapter{
             val intent_vehiclesCard = Intent(this, VehicleCard::class.java)
+            intent_vehiclesCard.putExtra(PARAM_VEHICLE_NAME, it.name)
+            intent_vehiclesCard.putExtra(PARAM_VEHICLE_MODEL, it.model)
+            intent_vehiclesCard.putExtra(PARAM_VEHICLE_MANUFACTURER, it.manufacturer)
+            intent_vehiclesCard.putExtra(PARAM_VEHICLE_COST, it.costInCredits)
+            intent_vehiclesCard.putExtra(PARAM_VEHICLE_LENGTH, it.length)
+            intent_vehiclesCard.putExtra(PARAM_VEHICLE_SPEED, it.maxAtmospheringSpeed)
+            intent_vehiclesCard.putExtra(PARAM_VEHICLE_CREW, it.crew)
+            intent_vehiclesCard.putExtra(PARAM_VEHICLE_PASSENGERS, it.passengers)
+            intent_vehiclesCard.putExtra(PARAM_VEHICLE_CAPACITY, it.cargoCapacity)
+            intent_vehiclesCard.putExtra(PARAM_VEHICLE_CONSUMABLE, it.consumables)
+            intent_vehiclesCard.putExtra(PARAM_VEHICLE_CLASS, it.vehicleClass)
+            intent_vehiclesCard.putExtra(PARAM_VEHICLE_CREATED, it.created)
+            intent_vehiclesCard.putExtra(PARAM_VEHICLE_EDITED, it.edited)
             Log.i("DEBUG", "touched ${it.name}")
             startActivity(intent_vehiclesCard)
         }
@@ -48,7 +61,7 @@ class ListVehicles : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<SWModelList<Vehicle>>, t: Throwable) {
-                Log.d("DEBUG", "error while retrieving people : ${t.localizedMessage}")
+                Log.d("DEBUG", "error while retrieving vehicle : ${t.localizedMessage}")
             }
         })
 
