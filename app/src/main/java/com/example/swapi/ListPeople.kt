@@ -33,6 +33,7 @@ class ListPeople : AppCompatActivity() {
             intent_peopleCard.putExtra(PARAM_PEOPLE_EDITED, it.edited)
             intent_peopleCard.putExtra(PARAM_PEOPLE_WORLD, it.homeWorldUrl)
             Log.i("DEBUG", "touched ${it.name}")
+            Toast.makeText(this, "Connected", Toast.LENGTH_SHORT).show()
             startActivity(intent_peopleCard)
         }
         lstPeople.adapter = adapter
